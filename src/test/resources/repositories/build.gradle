@@ -1,0 +1,23 @@
+repositories {
+	mavenCentral()
+}
+
+repositories {
+    maven {
+        url "http://foo.bar"
+    }
+    maven {
+        url "http://baz.qux"
+    }
+}
+
+
+repositories {
+    unknown {
+        url "http://repo.mycompany.com/maven2"
+    }
+}
+
+repositories {
+    jcenter()
+}

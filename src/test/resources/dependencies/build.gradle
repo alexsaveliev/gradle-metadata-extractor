@@ -1,0 +1,45 @@
+dependencies {
+    runtime group: 'a', name: 'b', version: 'c'
+    runtime 'a:b:d',
+            'a:b:e'
+    runtime(
+        [group: 'a', name: 'b', version: 'f'],
+        [group: 'a', name: 'b', version: 'g']
+    )
+    runtime('a:b:h') {
+        transitive = true
+    }
+    runtime group: 'a', name: 'b', version: 'i', transitive: true
+    runtime(group: 'a', name: 'b', version: 'j') {
+        transitive = true
+    }
+    compile project(':shared')
+	runtime files('libs/a.jar', 'libs/b.jar')
+    runtime fileTree(dir: 'libs', include: '*.jar')
+
+ 	compile files("$buildDir/classes") {
+        builtBy 'compile'
+    }
+
+    compile gradleApi()
+    compile localGroovy()
+
+}
+
+dependencies {
+    compile("a:b:k") {
+        exclude module: 'shared'
+    }
+}
+
+List groovy = ["a:b:l@jar",
+               "a:b:m@jar"]
+List hibernate = ['a:b:n']
+dependencies {
+    runtime groovy, hibernate
+}
+
+dependencies {
+	runtime ":x:y", ":z"
+    runtime name: 'f'
+}
